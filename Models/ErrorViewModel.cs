@@ -1,6 +1,6 @@
 using System;
 
-namespace vln2_group42.Models
+namespace BookCave.Models
 {
     public class ErrorViewModel
     {

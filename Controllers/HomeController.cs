@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using vln2_group42.Models;
+using BookCave.Models;
 
-namespace vln2_group42.Controllers
+namespace BookCave.Controllers
 {
     public class HomeController : Controller
     {
