@@ -33,3 +33,9 @@
         display: none;
     }
 }
+.categories {
+    float: left;
+}
+.marbot {
+    margin-bottom: 20px;
+}
