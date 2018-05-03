@@ -33,5 +33,15 @@ namespace vln2_group42.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult UserControlPanel()
+        {
+            return View();
+        }
+
+        public IActionResult CreateAccount()
+        {
+            return View();
+        }
     }
 }
