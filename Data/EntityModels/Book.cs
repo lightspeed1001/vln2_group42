@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using BookCave.Data.EntityModels;
 
 namespace BookCave.Data.EntityModels
 {
@@ -13,7 +12,11 @@ namespace BookCave.Data.EntityModels
         public string CoverPath {get; set;}
         public string ISBN {get; set;}
         public DateTime PublishDate {get; set;}
-        public virtual ICollection<Author> Authors {get; set;}
-        public virtual ICollection<Genre> Genres {get; set;}
+        public int InventoryCount {get; set;}
+        public virtual List<BookAuthor> BookAuthors {get; set;}
+        public virtual List<BookGenre> BookGenres {get; set;}
+        public virtual List<BookInOrder> BooksInOrder {get; set;}
+        public virtual List<BooksInList> BooksInList {get; set;}
+        public virtual List<BookReview> Reviews {get; set;}
     }
 }
