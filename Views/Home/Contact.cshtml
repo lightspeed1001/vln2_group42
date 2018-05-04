@@ -1,6 +1,49 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Sign up";
 }
 <h2>@ViewData["Title"]</h2>
 
-
+<p>Are you a new customer? Fill in your details below:</p>
+<label for="passWord">Password</label>
+<input style="password" name="passWord"><br>
+<h3>Contact details</h3>
+<label for="emailAddress">Email address</label>
+<input style="text" name="emailAddress"><br>
+<label for="telephoneNumber">Telephone Number</label>
+<input style="text" name="telephoneNumber">
+<h3>Billing address</h3>
+<label for="fullName">Full Name</label>
+<input style="text" name="fullName"><br>
+<label for="addressLine1">Address Line 1</label>
+<input style="text" name="addressLine1"><br>
+<label for="addressLine2">Address Line 2</label>
+<input style="text" name="addressLine2"><br>
+<label for="townCity">Town/City</label>
+<input style="text" name="townCity"><br>
+<label for="countryState">Country/State</label>
+<input style="text" name="countryState"><br>
+<label for="postcodeZip">Postcode/Zip</label>
+<input style="text" name="postcodeZip"><br>
+<label for="country">Country</label>
+<select name="country">
+    <option value="ice">Iceland</option>
+    <option value="eng">England</option>
+    <option value="fra">France</option>
+</select>
+<h3>Payment</h3>
+<label for="cardType">Card type</label>
+<select name="cardType">
+    <option value="visa">Visa</option>
+    <option value="masterCard">Master Card</option>
+    <option value="americanExpress">American express</option>
+</select>
+<label for="cardNumber">Card Number</label>
+<input style="text" name="cardNumber"><br>
+<label for="date">Birthdate</label>
+<input type="date" name="date">
+<label for="nameOnCard">Name on Card</label>
+<input style="text" name="nameOnCard"><br>
+<label for="CVV2">CVV2 Number</label>
+<input style="text" name="CVV2"><br>
+<button type="submit" class="btn btn-success" name="buyNow">Buy Now</button>
