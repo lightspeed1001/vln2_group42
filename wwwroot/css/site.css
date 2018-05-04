@@ -33,3 +33,14 @@
         display: none;
     }
 }
+
+.searchbar {
+    float: left;
+    display: block;
+    color: black;
+    text-align: left;
+    padding: 5px 5px;
+    text-decoration: none;
+    font-size: 12px;
+  }
+
