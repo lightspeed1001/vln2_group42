@@ -6,7 +6,7 @@ namespace BookCave.Models.ViewModels
     public class ShortBookView
     {
         public int BookID { get; set; }
-        public List<int> AuthorIDs { get; set; }
+        public int AuthorID { get; set; }
         public string BookTitle { get; set; }
         public string AuthorName { get; set; }
         public float BookRating { get; set; }
