@@ -1,7 +1,4 @@
-﻿@model List<BookCave.Models.ViewModels.ShortBookView>
-
-
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 <div class="categories">
@@ -16,17 +13,20 @@
     </div>
 </div>
 
-<!-- Mikael testing shit -->
-<ul>
-    @foreach(var book in Model)
-    {
-        <li>
-            <p>
-                Title:  @book.BookTitle  <br>
-                Author:  @book.AuthorName  <br>
-                Rating: @book.BookRating <br>
-                Price: @book.BookPrice  <br>
-            </p>
-        </li>
-    }
-</ul>
+<div class="topselling">
+    <h3 class="marbot">Top Selling books</h3>
+    <div class="topselcon">
+        <div class="topselit">
+            <a href=""><img class="topselimg" src="https://images.gr-assets.com/books/1348990566l/5470.jpg" alt=""></a>
+            <h5>1984 - George Orwell</h5>
+        </div>
+        <div class="topselit">
+            <a href=""><img class="topselimg" src="https://images.gr-assets.com/books/1348990566l/5470.jpg" alt=""></a>
+            <h5>1984 - George Orwell</h5>
+        </div>
+        <div class="topselit">
+            <a href=""><img class="topselimg" src="https://images.gr-assets.com/books/1348990566l/5470.jpg" alt=""></a>
+            <h5>1984 - George Orwell</h5>
+        </div>
+    </div>
+</div>
