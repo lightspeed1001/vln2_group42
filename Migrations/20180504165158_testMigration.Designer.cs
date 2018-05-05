@@ -12,9 +12,10 @@ using System;
 namespace vln2_group42.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20180504165158_testMigration")]
+    partial class testMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,8 +33,7 @@ namespace vln2_group42.Migrations
 
                     b.Property<string>("ImagePath");
 
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<string>("Name");
 
                     b.HasKey("ID");
 
@@ -47,8 +47,7 @@ namespace vln2_group42.Migrations
 
                     b.Property<string>("CoverPath");
 
-                    b.Property<string>("ISBN")
-                        .IsRequired();
+                    b.Property<string>("ISBN");
 
                     b.Property<int>("InventoryCount");
 
@@ -58,8 +57,7 @@ namespace vln2_group42.Migrations
 
                     b.Property<DateTime>("PublishDate");
 
-                    b.Property<string>("Title")
-                        .IsRequired();
+                    b.Property<string>("Title");
 
                     b.HasKey("ID");
 
@@ -145,8 +143,7 @@ namespace vln2_group42.Migrations
 
                     b.Property<string>("Email");
 
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<string>("Name");
 
                     b.Property<string>("Password");
 
@@ -170,8 +167,7 @@ namespace vln2_group42.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("Title")
-                        .IsRequired();
+                    b.Property<string>("Title");
 
                     b.HasKey("ID");
 
@@ -183,8 +179,7 @@ namespace vln2_group42.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<string>("Name");
 
                     b.HasKey("ID");
 

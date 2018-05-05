@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
+using BookCave.Data;
+using BookCave.Data.EntityModels;
+using BookCave.Repositories;
 
 namespace BookCave.Controllers
 {
@@ -12,6 +15,11 @@ namespace BookCave.Controllers
     {
         public IActionResult Index()
         {
+            //Quick test
+            /*BookRepository bookRepo = new BookRepository();
+            var books = bookRepo.GetAllBooksShortView();
+            
+            return View(books);*/
             return View();
         }
 
