@@ -39,3 +39,23 @@
 .marbot {
     margin-bottom: 20px;
 }
+.topselling {
+    margin-top: 50px;
+    float: right;
+    border: 5px rgb(207, 200, 200);
+    border-style: solid;
+    padding: 10px;
+    text-align: center;
+}
+.topselimg {
+    width: 150px;
+    height: 170px;
+}
+.topselit {
+    border: 5px rgb(207, 200, 200);
+    border-style: solid;
+    margin: 10px;
+}
+.topselit:hover {
+    border-color: red;
+}
