@@ -1,7 +1,4 @@
-﻿@model List<BookCave.Models.ViewModels.ShortBookView>
-
-
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 <div class="categories">
@@ -15,18 +12,3 @@
         <button type="button" class="btn btn-default">Non-Fiction</button>
     </div>
 </div>
-
-<!-- Mikael testing shit -->
-<!-- <ul>
-    @foreach(var book in Model)
-    {
-        <li>
-            <p>
-                Title:  @book.BookTitle  <br>
-                Author(s):  @book.AuthorName  <br>
-                Rating: @book.BookRating <br>
-                Price: @book.BookPrice  <br>
-            </p>
-        </li>
-    }
-</ul> -->
