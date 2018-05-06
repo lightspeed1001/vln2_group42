@@ -35,6 +35,9 @@
 }
 .categories {
     float: left;
+    margin-top: 10px;
+    padding-right: 10px;
+    border-right: 2px solid rgb(201, 208, 216);
 }
 .marbot {
     margin-bottom: 20px;
@@ -57,5 +60,23 @@
     margin: 10px;
 }
 .topselit:hover {
+    border-color: red;
+}
+.specialoffer {
+    height: 200px;
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+}
+.speclit {
+    border: 5px rgb(207, 200, 200);
+    border-style: solid;
+    margin: 10px;
+    width: 170px;
+    display: inline-block;
+}
+.speclit:hover {
     border-color: red;
 }
