@@ -7,7 +7,7 @@ namespace BookCave.Models.ViewModels
     {
         public int ID { get; set; }
         public string Title { get; set; }
-        public AuthorView Author { get; set; }
+        public List<AuthorView> Author { get; set; }
         public float Rating { get; set;}
         public float Price { get; set; }
         public float PriceModifier { get; set; }
@@ -15,5 +15,6 @@ namespace BookCave.Models.ViewModels
         public string ISBN { get; set; }
         public DateTime Published { get; set; }
         public int InventoryCount {get; set;}
+        public List<GenreView> Genres {get; set;}
     }
 }

@@ -41,6 +41,17 @@ namespace BookCave.Repositories
             _db.SaveChanges();
         }
 
+        //Lazy method. Doesn't clean up properly etc
+        public void RemoveCustomer(int customerID)
+        {
+            Customer customerEntity = _db.Customers.SingleOrDefault(x => x.ID == customerID);
+            if(customerEntity != null) 
+            {
+                _db.Remove(customerEntity);
+                _db.SaveChanges();
+            }
+        }
+
         public void AddUser(NewUserView user)
         {
             Customer newUser = new Customer
