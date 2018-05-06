@@ -2,22 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace BookCave.Data.EntityModels
+namespace BookCave.Models.ViewModels
 {
-    public class Customer
+    public class NewUserView
     {
-        public Customer()
+        public NewUserView()
         {
             IsStaff = false;
         }
-        public int ID {get; set;}
 
         [Required]
         public string Name {get; set;}
 
-        //[Required]
-        public string HashedPassword {get; set;}
-
+        [Required]
+        public string Password {get; set;}
         
         [Required]
         public string Email {get; set;}

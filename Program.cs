@@ -17,7 +17,7 @@ namespace BookCave
         public static void Main(string[] args)
         {
             var host = BuildWebHost(args);
-            SeedData();
+            // SeedData();
             host.Run();
         }
 
@@ -29,6 +29,36 @@ namespace BookCave
         public static void SeedData()
         {
             return;
+
+            /*DataContext db = new DataContext();
+
+            List<Customer> customers = new List<Customer>()
+            {
+                new Customer { Name = "Customer the First"  },
+                new Customer { Name = "Customer the Second" },
+                new Customer { Name = "Customer the Third"  },
+                new Customer { Name = "Customer the Fourth" }
+            };
+
+            List<BookReview> reviews = new List<BookReview>()
+            {
+                new BookReview { BookID = 1, CustomerID = 1, Rating = 10 },
+                new BookReview { BookID = 1, CustomerID = 2, Rating = 9  },
+                new BookReview { BookID = 1, CustomerID = 3, Rating = 3  },
+                new BookReview { BookID = 1, CustomerID = 4, Rating = 5  }
+            };
+
+            List<BookAuthor> bookauthors = new List<BookAuthor>()
+            {
+                new BookAuthor { BookID = 1, AuthorID = 2 }
+            };
+
+            db.AddRange(customers);
+            db.AddRange(reviews);
+            db.AddRange(bookauthors);
+
+            db.SaveChanges();
+
             /*var db = new DataContext();
 
             List<Book> books = new List<Book>()

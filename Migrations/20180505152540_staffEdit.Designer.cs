@@ -12,9 +12,10 @@ using System;
 namespace vln2_group42.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20180505152540_staffEdit")]
+    partial class staffEdit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,19 +144,20 @@ namespace vln2_group42.Migrations
 
                     b.Property<string>("Country");
 
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<string>("HashedPassword");
+                    b.Property<string>("Email");
 
                     b.Property<bool>("IsStaff");
 
                     b.Property<string>("Name")
                         .IsRequired();
 
+                    b.Property<string>("Password");
+
                     b.Property<string>("PhoneNumber");
 
                     b.Property<string>("Postcode");
+
+                    b.Property<string>("Salt");
 
                     b.HasKey("ID");
 

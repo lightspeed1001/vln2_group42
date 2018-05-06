@@ -27,46 +27,48 @@ namespace BookCave.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Make the many-to-many relationship work
+            //Pure join tables, don't need ID
             modelBuilder.Entity<BookGenre>().HasKey(t => new {t.BookID, t.GenreID});
-            modelBuilder.Entity<BookGenre>()
-                            .HasOne(b => b.Book)
-                            .WithMany(b => b.BookGenres)
-                            .HasForeignKey(b => b.BookID);
-            modelBuilder.Entity<BookGenre>()
-                            .HasOne(g => g.Genre)
-                            .WithMany(g => g.BookGenres)
-                            .HasForeignKey(g => g.GenreID);
-
             modelBuilder.Entity<BookAuthor>().HasKey(t => new {t.BookID, t.AuthorID});
-            modelBuilder.Entity<BookAuthor>()
-                            .HasOne(b => b.Book)
-                            .WithMany(b => b.BookAuthors)
-                            .HasForeignKey(b => b.BookID);
-            modelBuilder.Entity<BookAuthor>()
-                            .HasOne(g => g.Author)
-                            .WithMany(g => g.BookAuthors)
-                            .HasForeignKey(g => g.AuthorID);
-
             modelBuilder.Entity<BooksInList>().HasKey(k => new {k.BookID, k.ListID});
-            modelBuilder.Entity<BooksInList>()
-                            .HasOne(b => b.Book)
-                            .WithMany(b => b.BooksInList)
-                            .HasForeignKey(b => b.BookID);
-            modelBuilder.Entity<BooksInList>()
-                            .HasOne(l => l.List)
-                            .WithMany(l => l.BooksInList)
-                            .HasForeignKey(l => l.ListID);
-
             modelBuilder.Entity<BookInOrder>().HasKey(k => new{k.BookID, k.OrderID});
-            modelBuilder.Entity<BookInOrder>()
-                            .HasOne(b => b.Book)
-                            .WithMany(b => b.BooksInOrder)
-                            .HasForeignKey(b => b.BookID);
-            modelBuilder.Entity<BookInOrder>()
-                            .HasOne(o => o.Order)
-                            .WithMany(o => o.BooksInOrder)
-                            .HasForeignKey(o => o.OrderID);
+
+            // Tried to get fancy with the tables, wasn't worth it
+            // modelBuilder.Entity<BookGenre>()
+            //                 .HasOne(b => b.Book)
+            //                 .WithMany(b => b.BookGenres)
+            //                 .HasForeignKey(b => b.BookID);
+            // modelBuilder.Entity<BookGenre>()
+            //                 .HasOne(g => g.Genre)
+            //                 .WithMany(g => g.BookGenres)
+            //                 .HasForeignKey(g => g.GenreID);
+
+            // modelBuilder.Entity<BookAuthor>()
+            //                 .HasOne(b => b.Book)
+            //                 .WithMany(b => b.BookAuthors)
+            //                 .HasForeignKey(b => b.BookID);
+            // modelBuilder.Entity<BookAuthor>()
+            //                 .HasOne(g => g.Author)
+            //                 .WithMany(g => g.BookAuthors)
+            //                 .HasForeignKey(g => g.AuthorID);
+
+            // modelBuilder.Entity<BooksInList>()
+            //                 .HasOne(b => b.Book)
+            //                 .WithMany(b => b.BooksInList)
+            //                 .HasForeignKey(b => b.BookID);
+            // modelBuilder.Entity<BooksInList>()
+            //                 .HasOne(l => l.List)
+            //                 .WithMany(l => l.BooksInList)
+            //                 .HasForeignKey(l => l.ListID);
+
+            // modelBuilder.Entity<BookInOrder>()
+            //                 .HasOne(b => b.Book)
+            //                 .WithMany(b => b.BooksInOrder)
+            //                 .HasForeignKey(b => b.BookID);
+            // modelBuilder.Entity<BookInOrder>()
+            //                 .HasOne(o => o.Order)
+            //                 .WithMany(o => o.BooksInOrder)
+            //                 .HasForeignKey(o => o.OrderID);
         }
     }
 }

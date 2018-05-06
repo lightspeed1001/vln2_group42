@@ -8,7 +8,7 @@ namespace BookCave.Models.ViewModels
     public class OrderView
     {
         public int ID { get; set; }
-        public BookView[] Books { get; set; }
+        public List<BookView> Books { get; set; }
         public UserView Owner { get; set; }
         public OrderStatus Status { get; set; }
 
