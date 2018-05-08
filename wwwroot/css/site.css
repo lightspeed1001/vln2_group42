@@ -6,6 +6,7 @@
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
+    padding-top: 10px;
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -39,16 +40,23 @@
     padding-right: 10px;
     border-right: 2px solid rgb(201, 208, 216);
 }
+.categorylist {
+    width: 170px;
+}
+.btnover {
+    height: 40px;
+}
 .marbot {
     margin-bottom: 20px;
 }
 .topselling {
-    margin-top: 50px;
+    width: 220px;
     float: right;
-    border: 5px rgb(207, 200, 200);
+    border: 3px rgb(207, 200, 200);
     border-style: solid;
     padding: 10px;
     text-align: center;
+    
 }
 .topselimg {
     width: 150px;
@@ -68,7 +76,7 @@
     width: 60%;
     padding: 10px;
     text-align: center;
-    display: inline-block;
+    float: left;
 }
 .speclit {
     border: 5px rgb(207, 200, 200);
@@ -79,4 +87,91 @@
 }
 .speclit:hover {
     border-color: red;
+}
+* {box-sizing:border-box}
+
+.slideshow {
+    margin-top: 30px;
+    margin-left: 30px;
+    float: left;
+    max-width: 600px;
+    position: relative;
+}
+/* Slideshow container */
+
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.0s;
+    animation-name: fade;
+    animation-duration: 1.0s;
+}
+
+@-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
 }

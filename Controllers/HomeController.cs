@@ -30,10 +30,9 @@ namespace BookCave.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult GetCategories()
         {
-            ViewData["Message"] = "Your application description page.";
-
+            
             return View();
         }
 

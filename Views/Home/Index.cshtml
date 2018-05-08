@@ -1,18 +1,53 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<!-- Categories container -->
 <div class="categories">
     <h3 class="marbot">Categories</h3>
-    <div class="btn-group-vertical" role="group" aria-label="...">
-        <button type="button" class="btn btn-default">Action</button>
-        <button type="button" class="btn btn-default">Romance</button>
-        <button type="button" class="btn btn-default">Comedy</button>
-        <button type="button" class="btn btn-default">Young Adult</button>
-        <button type="button" class="btn btn-default">Philosophy</button>
-        <button type="button" class="btn btn-default">Non-Fiction</button>
+    <div class="btn-group-vertical categorylist" role="group" aria-label="...">
+        <button type="button" class="btn btn-default btnover">Action</button>
+        <button type="button" class="btn btn-default btnover">Romance</button>
+        <button type="button" class="btn btn-default btnover">Comedy</button>
+        <button type="button" class="btn btn-default btnover">Young Adult</button>
+        <button type="button" class="btn btn-default btnover">Philosophy</button>
+        <button type="button" class="btn btn-default btnover">Non-Fiction</button>
     </div>
 </div>
+<div class="slideshow">
+ <!-- Slideshow container -->
+    <div class="slideshow-container">
 
+        <!-- Full-width images with number and caption text -->
+        <div class="mySlides fade">
+            <img src="https://www.w3schools.com/howto/img_nature_wide.jpg" style="width:100%">
+            <div class="text">Caption Text</div>
+        </div>
+
+        <div class="mySlides fade">
+            <img src="https://www.w3schools.com/howto/img_fjords_wide.jpg" style="width:100%">
+            <div class="text">Caption Two</div>
+        </div>
+
+        <div class="mySlides fade">
+            <img src="https://www.w3schools.com/howto/img_lights_wide.jpg" style="width:100%">
+            <div class="text">Caption Three</div>
+        </div>
+
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <br>
+
+    <!-- The dots/circles -->
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div> 
+</div>
+
+<!-- Special offer Container -->
 <div class="specialoffer">
     <div class="speclit">
             <a href=""><img class="topselimg" src="https://images.gr-assets.com/books/1348990566l/5470.jpg" alt=""></a>
