@@ -5,12 +5,11 @@
 <div class="categories">
     <h3 class="marbot">Categories</h3>
     <div class="btn-group-vertical categorylist" role="group" aria-label="...">
-        <button type="button" class="btn btn-default btnover">Action</button>
-        <button type="button" class="btn btn-default btnover">Romance</button>
-        <button type="button" class="btn btn-default btnover">Comedy</button>
-        <button type="button" class="btn btn-default btnover">Young Adult</button>
-        <button type="button" class="btn btn-default btnover">Philosophy</button>
-        <button type="button" class="btn btn-default btnover">Non-Fiction</button>
+
+        @foreach (var item in ViewBag.Categories)
+            {
+                <a asp-area="" asp-controller="Home" asp-action="Details" asp-route-id="@item.ID" class="btn btn-default btnover">@item.Name</a>
+            }
     </div>
 </div>
 <div class="slideshow">

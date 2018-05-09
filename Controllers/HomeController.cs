@@ -27,12 +27,8 @@ namespace BookCave.Controllers
             var books2 = bookRepo.GetAllBooksShortView();
             
             return View(books2);*/
-            return View();
-        }
-
-        public IActionResult GetCategories()
-        {
-            
+            GenreRepository genreRepo = new GenreRepository();
+            ViewBag.Categories = genreRepo.GetAllGenres();
             return View();
         }
 

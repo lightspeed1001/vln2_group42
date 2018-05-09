@@ -50,13 +50,13 @@
     margin-bottom: 20px;
 }
 .topselling {
+    margin: auto;
     width: 220px;
     float: right;
     border: 3px rgb(207, 200, 200);
     border-style: solid;
     padding: 10px;
     text-align: center;
-    
 }
 .topselimg {
     width: 150px;
@@ -76,7 +76,8 @@
     width: 60%;
     padding: 10px;
     text-align: center;
-    float: left;
+    display: inline-block;
+   
 }
 .speclit {
     border: 5px rgb(207, 200, 200);

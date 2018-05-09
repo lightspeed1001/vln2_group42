@@ -32,7 +32,15 @@ namespace BookCave.Repositories
         }
         public List<GenreView> GetAllGenres()
         {
-            throw new NotImplementedException();
+            var genres =    (from g in _db.Genres 
+                            select new GenreView
+                            {
+                                ID = g.ID,
+                                Name = g.Name
+                            }
+                            ).ToList();
+            return genres;
+
         }
 
         public void AddGenre(GenreView genre)
