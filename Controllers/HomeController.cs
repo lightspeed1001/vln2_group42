@@ -22,8 +22,6 @@ namespace BookCave.Controllers
             books[0].Price = 100;
             books[0].ISBN = "penis";
             bookRepo.EditBook(books[0]);
-
-
             var books2 = bookRepo.GetAllBooksShortView();
             
             return View(books2);*/
@@ -51,6 +49,35 @@ namespace BookCave.Controllers
 
         public IActionResult CreateAccount()
         {
+            return View();
+        }
+        public IActionResult Action()
+        {
+            return View();
+        }
+        public IActionResult Romance()
+        {
+            
+            return View();
+        }
+          public IActionResult Comedy()
+        {
+            
+            return View();
+        }
+          public IActionResult YoungAdult()
+        {
+            
+            return View();
+        }
+          public IActionResult Philosophy()
+        {
+            
+            return View();
+        }
+          public IActionResult NonFiction()
+        {
+            
             return View();
         }
     }
