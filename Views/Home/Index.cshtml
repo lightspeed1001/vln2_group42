@@ -8,7 +8,7 @@
         @foreach (var item in ViewBag.Categories)
         {
             <a class="btn btn-default btnover" asp-controller="Home" asp-action="Details" asp-route-id="@item.ID">@item.Name</a>
-        }
+        }      
     </div>
 </div>
 <div class="slideshow">
@@ -61,8 +61,9 @@
         </div>
 </div>
 
+
 <div class="topselling">
-    <h3 class="marbot">Top Selling books</h3>
+    <h3 class="marbot" id="tsb">Top Selling books</h3>
     <div class="topselcon">
         <div class="topselit">
             <a href=""><img class="topselimg" src="https://images.gr-assets.com/books/1348990566l/5470.jpg" alt=""></a>

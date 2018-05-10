@@ -31,10 +31,19 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><input class="searchbar" type="text" placeholder="Search for books, authors, etc..."></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Cart</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">Login</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Sign-Up</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Language</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Cart" id="cart">Cart</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact" id="su">Sign-Up</a></li>
+                    <li>
+                    <label style="color:gray" for="lang" id="language">Language</label>
+                    <select name="lang">
+                        <option id="eng" onclick="Lang2()" id="eng">English</option>
+                        <option id="isk" onclick="Lang1()" id="isk">Icelandic</option>
+                    </select>
+                    </li>
+                    <li><label style="color:grey" for="Username" id="username">Username:</label><input name="Username" class="searchbar" type="text" placeholder="Username"></li>
+                    <li><label style="color:grey" for="Password" id="pass">Password:</label><input name="Password" class="searchbar" type="text" placeholder="Password"></li>
+
+                    
                 </ul>
             </div>
         </div>
