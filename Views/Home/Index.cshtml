@@ -5,12 +5,10 @@
 <div class="categories">
     <h3 class="marbot">Categories</h3>
     <div class="btn-group-vertical categorylist" role="group" aria-label="...">
-        <button type="button" class="btn btn-default btnover" onclick="location.href = 'http://localhost:5000/Home/Action';">Action</button>
-        <button type="button" class="btn btn-default btnover" onclick="location.href = 'http://localhost:5000/Home/Romance';">Romance</button>
-        <button type="button" class="btn btn-default btnover" onclick="location.href = 'http://localhost:5000/Home/Comedy';">Comedy</button>
-        <button type="button" class="btn btn-default btnover" onclick="location.href = 'http://localhost:5000/Home/YoungAdult';">Young Adult</button>
-        <button type="button" class="btn btn-default btnover" onclick="location.href = 'http://localhost:5000/Home/Philosophy';">Philosophy</button>
-        <button type="button" class="btn btn-default btnover" onclick="location.href = 'http://localhost:5000/Home/NonFiction';">Non-Fiction</button>
+        @foreach (var item in ViewBag.Categories)
+        {
+            <a class="btn btn-default btnover" asp-controller="Home" asp-action="Details" asp-route-id="@item.ID">@item.Name</a>
+        }
     </div>
 </div>
 <div class="slideshow">
@@ -62,7 +60,6 @@
             <h5>1984 - George Orwell</h5>
         </div>
 </div>
-
 
 <div class="topselling">
     <h3 class="marbot">Top Selling books</h3>

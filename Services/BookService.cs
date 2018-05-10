@@ -37,5 +37,10 @@ namespace BookCave.Services
         {
             return _bookRepo.GetAllDetailedBookView();
         }
+        public List<BookView> GetAllBooksByID(int? id)
+        {
+            
+            return GetAllBooksByID(1);
+        }
     }
 }

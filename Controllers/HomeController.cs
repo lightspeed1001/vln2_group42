@@ -31,6 +31,16 @@ namespace BookCave.Controllers
             TestData();
             return View();
         }
+        public IActionResult Description()
+        {
+            return View();
+        }
+
+        public IActionResult Details(int? id) 
+        {
+            
+            return View();
+        }
 
         public static void TestData()
         {
