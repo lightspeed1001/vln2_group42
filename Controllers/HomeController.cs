@@ -28,7 +28,7 @@ namespace BookCave.Controllers
             GenreRepository genreRepo = new GenreRepository();
             ViewBag.Categories = genreRepo.GetAllGenres();
 
-            TestData();
+            //TestData();
             return View();
         }
         public IActionResult Description()
