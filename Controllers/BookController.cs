@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
+using BookCave.Services;
 using BookCave.Models.ViewModels;
 using BookCave.Repositories;
 
