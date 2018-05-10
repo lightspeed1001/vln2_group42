@@ -25,11 +25,13 @@ namespace BookCave.Controllers
             var books2 = bookRepo.GetAllBooksShortView();
             
             return View(books2);*/
-            GenreRepository genreRepo = new GenreRepository();
-            ViewBag.Categories = genreRepo.GetAllGenres();
+            
             return View();
         }
-
+        public IActionResult Description()
+        {
+            return View();
+        }
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
