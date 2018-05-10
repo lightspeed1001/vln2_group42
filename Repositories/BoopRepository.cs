@@ -28,13 +28,14 @@ namespace BookCave.Repositories
                 PublishDate = book.PublishDate,
                 Title = book.Title
             };
+            //TODO: Handle genres and authors
             _db.Add(bookEntity);
             _db.SaveChanges();
         }
 
         public void RemoveBook(int bookID)
         {
-            Book bookEntity = _db.Books.SingleOrDefault(x => x.ID == bookID);
+            Book bookEntity = _db.Books.Single(x => x.ID == bookID);
             if(bookEntity != null) 
             {
                 _db.Remove(bookEntity);
@@ -48,7 +49,7 @@ namespace BookCave.Repositories
             var col = (from b in _db.Books where b.ID==book.ID select b);
             if(col.Count() == 1)
             {
-                Book eBook = col.First();
+                Book eBook = col.Single();
                 eBook.CoverPath = book.CoverPath;
                 eBook.InventoryCount = book.InventoryCount;
                 eBook.ISBN = book.ISBN;
@@ -56,13 +57,26 @@ namespace BookCave.Repositories
                 eBook.PriceModifier = book.PriceModifier;
                 eBook.PublishDate = book.Published;
                 eBook.Title = book.Title;
+
+                //TODO: Check for new authors & genres
                 var authors = (from a in _db.BookAuthors where a.BookID == book.ID select a);
+                
                 _db.SaveChanges();
             }
         }
 
+        public BookView GetBookByID(int id)
+        {
+            return GetBookViewForEntity(_db.Books.Single(x => x.ID == id));
+        }
+
+        public ShortBookView GetShortBookViewByID(int id)
+        {
+            return GetShortViewForEntity(_db.Books.Single(x => x.ID == id));
+        }
+
         //Intended for when you click on a book.
-        public List<BookView> GetDetailedBookView()
+        public List<BookView> GetAllDetailedBookView()
         {
             var books = (from b in _db.Books select 
                          GetBookViewForEntity(b)).ToList();
@@ -80,13 +94,14 @@ namespace BookCave.Repositories
             return books;
         }
 
-        public  BookView GetBookViewForEntity(Book b)
+        public BookView GetBookViewForEntity(Book b)
         {
+            if(b == null) return null;
             BookView book =
                 new BookView
                 {
                     ID              = b.ID,
-                    Author          = (from ba in _db.BookAuthors 
+                    Authors         = (from ba in _db.BookAuthors 
                                         join a in _db.Authors on ba.AuthorID equals a.ID 
                                         where ba.BookID == b.ID 
                                         select new AuthorView
@@ -96,7 +111,7 @@ namespace BookCave.Repositories
                                             Description = a.Description,
                                             ImagePath = a.ImagePath,
                                             Name = a.Name
-                                        }).DefaultIfEmpty(new AuthorView()).ToList(),
+                                        }).DefaultIfEmpty(new AuthorView{Name = "Unknown Author" }).ToList(),
                     CoverPath       = b.CoverPath,
                     Price           = b.Price,
                     PriceModifier   = b.PriceModifier,
@@ -104,12 +119,21 @@ namespace BookCave.Repositories
                     Rating          = (from br in _db.Reviews where br.BookID == b.ID select br.Rating).DefaultIfEmpty(0f).Average(),
                     ISBN            = b.ISBN,
                     Published       = b.PublishDate,
+                    Genres          = (from bg in _db.BookGenres
+                                        join g in _db.Genres on bg.GenreID equals g.ID
+                                        where bg.BookID == b.ID
+                                        select new GenreView
+                                        {
+                                            ID = g.ID,
+                                            Name = g.Name
+                                        }).DefaultIfEmpty(new GenreView{ Name = "Unknown Genre" }).ToList()
                 };
             return book;
         }
 
         public ShortBookView GetShortViewForEntity(Book b)
         {
+            if(b == null) return null;
             ShortBookView book = 
                 new ShortBookView
                 {
@@ -123,7 +147,7 @@ namespace BookCave.Repositories
                                                 ID = a.ID,
                                                 ImagePath = a.ImagePath,
                                                 Name = a.Name
-                                            }).DefaultIfEmpty(null).ToList(),
+                                            }).DefaultIfEmpty(new AuthorView{Name = "Unknown Author" }).ToList(),
                                             /*string.Join(" & ", (from ba in _db.BookAuthors 
                                             join a in _db.Authors on ba.AuthorID equals a.ID 
                                             where ba.BookID == b.ID select a.Name).DefaultIfEmpty("Unknown")),*/
@@ -131,7 +155,15 @@ namespace BookCave.Repositories
                     BookPrice           = b.Price,
                     BookPriceModifier   = b.PriceModifier,
                     BookTitle           = b.Title,
-                    BookRating          = (from br in _db.Reviews where br.BookID == b.ID select br.Rating).DefaultIfEmpty(0f).Average()
+                    BookRating          = (from br in _db.Reviews where br.BookID == b.ID select br.Rating).DefaultIfEmpty(0f).Average(),
+                    Genres              = (from bg in _db.BookGenres
+                                            join g in _db.Genres on bg.GenreID equals g.ID
+                                            where bg.BookID == b.ID
+                                            select new GenreView
+                                            {
+                                                ID = g.ID,
+                                                Name = g.Name
+                                            }).DefaultIfEmpty(new GenreView{ Name = "Unknown Genre" }).ToList()
                 };
             return book;
         }

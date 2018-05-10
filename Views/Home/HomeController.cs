@@ -28,20 +28,7 @@ namespace BookCave.Controllers
             
             return View();
         }
-        public IActionResult Description()
-        {
-            return View();
-        }
-<<<<<<< HEAD
 
-        public IActionResult Details(int? id) 
-        {
-            
-            return View();
-        }
-
-=======
->>>>>>> ce74d690e31d4ff7fd7d13af580ac73a80e551d2
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";

@@ -1,0 +1,21 @@
+@model IEnumerable<BookCave.Models.ViewModels.BookList>
+    
+<table class="table table-striped table-hover">
+
+    <tr>
+        <th>Title</th>
+        <th>Genre</th>
+        <th>Rating</th>
+    </tr>
+
+    @foreach(var i in Model)
+    {
+        <tr>
+            <td><a asp-controller="Book" asp-action="Details" asp-route-id="@i.ID">@i.Title</a></td>
+            <td>@i.Title</td>
+            <td>@i.Genre</td>
+            <td>@i.Rating</td>
+        </tr>
+    }
+    
+</table>

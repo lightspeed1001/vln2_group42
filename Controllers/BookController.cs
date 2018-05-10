@@ -5,18 +5,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
+using BookCave.Models.ViewModels;
+using BookCave.Repositories;
 
 namespace BookCave.Controllers
 {
     public class BookController : Controller
     {
-        public IActionResult ViewBook()
+        public IActionResult ViewBook(int bookID)
         {
-            return View();
+            BookView book = new BookRepository().GetBookByID(bookID);
+            return View(book);
         }
         
         public IActionResult EditBook()
         {
+            
             return View();
         }
         public IActionResult CreateBook()
@@ -29,6 +33,7 @@ namespace BookCave.Controllers
         }
         public bool AddToCart()
         {
+            
             return true;
         }
     }

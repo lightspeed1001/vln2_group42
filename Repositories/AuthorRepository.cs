@@ -28,16 +28,34 @@ namespace BookCave.Repositories
 
         public List<AuthorView> GetAllAuthorsForBook(int bookID)
         {
-            throw new NotImplementedException();
+            var authors = (from a in _db.Authors
+                           join ba in _db.BookAuthors on a.ID equals ba.AuthorID
+                           where ba.BookID == bookID
+                           select GetAuthorViewForEntity(a));
+            
+            return authors.ToList();
         }
+
+        public AuthorView GetAuthorByID(int id)
+        {
+            var author = (from a in _db.Authors where a.ID == id select a).Single();
+            
+            return GetAuthorViewForEntity(author);
+        }
+
         public List<AuthorView> GetAllAuthors()
         {
-            throw new NotImplementedException();
+            var authors = (from a in _db.Authors select GetAuthorViewForEntity(a));
+
+            return authors.ToList();
         }
 
         public void AddAuthor(AuthorView Author)
         {
-            throw new NotImplementedException();
+            Author a = GetAuthorEntityForView(Author);
+
+            _db.Add(a);
+            _db.SaveChanges();
         }
 
         public void RemoveAuthor(AuthorView Author)
@@ -47,12 +65,51 @@ namespace BookCave.Repositories
 
         public void RemoveAuthorByID(int id)
         {
-            throw new NotImplementedException();
+            Author author = (from a in _db.Authors where a.ID == id select a).Single();
+            if(author != null)
+            {
+                _db.Remove(author);
+                _db.SaveChanges();
+            }
         }
 
-        public void EditAuthor(AuthorView Author)
+        public void EditAuthor(AuthorView author)
         {
-            throw new NotImplementedException();
+            var col = _db.Authors.Single(x => x.ID == author.ID);
+            if(col != null)
+            {
+                col.Birthday = author.Birthday;
+                col.Description = author.Description;
+                col.ImagePath = author.ImagePath;
+                col.Name = author.Name;
+                _db.SaveChanges();
+            }
+        }
+
+        public Author GetAuthorEntityForView(AuthorView a)
+        {
+            if(a == null) return null;
+            return new Author
+                        {
+                            Birthday = a.Birthday,
+                            Description = a.Description,
+                            ID = a.ID,
+                            ImagePath = a.ImagePath,
+                            Name = a.Name
+                        };
+        }
+
+        public AuthorView GetAuthorViewForEntity(Author a)
+        {
+            if(a == null) return null;
+            return new AuthorView
+                        {
+                            Birthday = a.Birthday,
+                            Description = a.Description,
+                            ID = a.ID,
+                            ImagePath = a.ImagePath,
+                            Name = a.Name
+                        };
         }
     }
 }
