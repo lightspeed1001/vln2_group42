@@ -180,5 +180,36 @@ namespace BookCave.Repositories
                 };
             return book;
         }
+        public BookDetailsView GetBookDetailsView(Book b)
+        {
+            if (b == null) return null;
+            var authors = (from ba in _db.BookAuthors 
+                        join a in _db.Authors on ba.AuthorID equals a.ID 
+                        where ba.BookID == b.ID select new AuthorView
+                        {
+                            Birthday = a.Birthday,
+                            Description = a.Description,
+                            ID = a.ID,
+                            ImagePath = a.ImagePath,
+                            Name = a.Name
+                        }).DefaultIfEmpty(new AuthorView{Name = "Unknown Author" });
+            var genres = (from bg in _db.BookGenres
+                                            join g in _db.Genres on bg.GenreID equals g.ID
+                                            where bg.BookID == b.ID
+                                            select new GenreView
+                                            {
+                                                ID = g.ID,
+                                                Name = g.Name
+                                            }).DefaultIfEmpty(new GenreView{ Name = "Unknown Genre" });
+            BookDetailsView book = new BookDetailsView
+                {
+                    Title = b.Title,
+                    Authors = authors,
+                    BookPrice = b.Price,
+                    Genres = genres
+                };
+            return book;
+        
+        }
     }
 }
