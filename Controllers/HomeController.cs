@@ -30,6 +30,12 @@ namespace BookCave.Controllers
             return View();
         }
 
+        public IActionResult Details(int? id) 
+        {
+            
+            return View();
+        }
+
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
