@@ -28,16 +28,26 @@ namespace BookCave.Repositories
 
         public List<GenreView> GetAllGenresForBook(int bookID)
         {
-            throw new NotImplementedException();
+            var derp = (from gb in _db.BookGenres
+                        join g in _db.Genres on gb.GenreID equals g.ID
+                        where gb.BookID == bookID
+                        select GetViewForEntity(g)).ToList();
+
+            return derp;
         }
         public List<GenreView> GetAllGenres()
         {
-            throw new NotImplementedException();
+            var derp = (from g in _db.Genres
+                        select GetViewForEntity(g)).ToList();
+
+            return derp;
         }
 
         public void AddGenre(GenreView genre)
         {
-            throw new NotImplementedException();
+            Genre genreEntity = GetEntityForView(genre);
+            _db.Add(genreEntity);
+            _db.SaveChanges();
         }
 
         public void RemoveGenre(GenreView genre)
@@ -47,12 +57,51 @@ namespace BookCave.Repositories
 
         public void RemoveGenreByID(int id)
         {
-            throw new NotImplementedException();
+            var genre = (from g in _db.Genres 
+                        where g.ID == id select g).Single();
+            if(genre != null)
+            {
+                var genreConnections = (from gb in _db.BookGenres
+                                        where gb.GenreID == id select gb);
+                _db.Remove(genre);
+                _db.Remove(genreConnections);
+                _db.SaveChanges();
+            }
         }
 
         public void EditGenre(GenreView genre)
         {
-            throw new NotImplementedException();
+            var genreEntity = (from g in _db.Genres
+                                where g.ID == genre.ID select g).Single();
+            if(genreEntity != null)
+            {
+                genreEntity.Name = genre.Name;
+                _db.SaveChanges();
+            }
+        }
+
+        public GenreView GetViewForEntity(Genre g)
+        {
+            if(g == null) return null;
+            GenreView gv = new GenreView
+            {
+                ID = g.ID,
+                Name = g.Name
+            };
+
+            return gv;
+        }
+
+        public Genre GetEntityForView(GenreView g)
+        {
+            if(g == null) return null;
+            Genre ge = new Genre
+            {
+                ID = g.ID,
+                Name = g.Name
+            };
+
+            return ge;
         }
     }
 }

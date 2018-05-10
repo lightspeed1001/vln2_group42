@@ -34,7 +34,7 @@ namespace BookCave.Services
 
         public List<BookView> GetAllBooksDetailed()
         {
-            return _bookRepo.GetDetailedBookView();
+            return _bookRepo.GetAllDetailedBookView();
         }
     }
 }
