@@ -5,10 +5,12 @@
 <div class="categories">
     <h3 class="marbot">Categories</h3>
     <div class="btn-group-vertical categorylist" role="group" aria-label="...">
-        @foreach (var item in ViewBag.Categories)
-        {
-            <a class="btn btn-default btnover" asp-controller="Home" asp-action="Details" asp-route-id="@item.ID">@item.Name</a>
-        }
+        <button id="1" type="button" class="btn btn-default btnover" onclick="location.href = 'http://localhost:5000/Home/Action';">Action</button>
+        <button id="2" type="button" class="btn btn-default btnover" onclick="location.href = 'http://localhost:5000/Home/Romance';">Romance</button>
+        <button id="3" type="button" class="btn btn-default btnover" onclick="location.href = 'http://localhost:5000/Home/Comedy';">Comedy</button>
+        <button id="4" type="button" class="btn btn-default btnover" onclick="location.href = 'http://localhost:5000/Home/YoungAdult';">Young Adult</button>
+        <button id="5" type="button" class="btn btn-default btnover" onclick="location.href = 'http://localhost:5000/Home/Philosophy';">Philosophy</button>
+        <button id="6" type="button" class="btn btn-default btnover" onclick="location.href = 'http://localhost:5000/Home/NonFiction';">Non-Fiction</button>
     </div>
 </div>
 <div class="slideshow">
@@ -61,8 +63,9 @@
         </div>
 </div>
 
+
 <div class="topselling">
-    <h3 class="marbot">Top Selling books</h3>
+    <h3 class="marbot" id="tsb">Top Selling books</h3>
     <div class="topselcon">
         <div class="topselit">
             <a href=""><img class="topselimg" src="https://images.gr-assets.com/books/1348990566l/5470.jpg" alt=""></a>
