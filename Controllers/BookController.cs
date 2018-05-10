@@ -14,19 +14,13 @@ namespace BookCave.Controllers
     {
         public IActionResult ViewBook(int bookID)
         {
-            
-            /*var book = (from a in Database.books
-                        where a.Id == id
-                        select new BookView{
-                            Title = a.Title,
-                            ...
-                            }).ToList();
-                        */
-            return View();
+            BookView book = new BookRepository().GetBookByID(bookID);
+            return View(book);
         }
         
         public IActionResult EditBook()
         {
+            
             return View();
         }
         public IActionResult CreateBook()
@@ -39,6 +33,7 @@ namespace BookCave.Controllers
         }
         public bool AddToCart()
         {
+            
             return true;
         }
     }
