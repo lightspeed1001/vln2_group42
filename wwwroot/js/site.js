@@ -27,3 +27,41 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
 } 
+
+function Lang1()
+{
+  document.getElementById("1").innerHTML = "Spennu";
+  document.getElementById("2").innerHTML = "Rómantík";
+  document.getElementById("3").innerHTML = "Grín";
+  document.getElementById("4").innerHTML = "Ungir fullorðnir";
+  document.getElementById("5").innerHTML = "Heimspeki";
+  document.getElementById("6").innerHTML = "Ekki skáldað";
+  document.getElementById("tsb").innerHTML = "Metsölu Bækur";
+  document.getElementById("cart").innerHTML = "Karfa";
+  document.getElementById("su").innerHTML = "Skrá sig inn";
+  document.getElementById("language").innerHTML = "Tungumál";
+  document.getElementById("eng").innerHTML = "Enska";
+  document.getElementById("isk").innerHTML = "Íslenska";
+  document.getElementById("username").innerHTML = "Notanda nafn";
+  document.getElementById("pass").innerHTML = "Aðgangsorð";
+}
+function Lang2()
+{
+  document.getElementById("1").innerHTML = "Action";
+  document.getElementById("2").innerHTML = "Romance";
+  document.getElementById("3").innerHTML = "Comedy";
+  document.getElementById("4").innerHTML = "Young Adults";
+  document.getElementById("5").innerHTML = "Philosophy";
+  document.getElementById("6").innerHTML = "Non-Fiction";
+  document.getElementById("tsb").innerHTML = "Top Selling Books";
+  document.getElementById("cart").innerHTML = "Cart";
+  document.getElementById("su").innerHTML = "Sign up";
+  document.getElementById("language").innerHTML = "Language";
+  document.getElementById("eng").innerHTML = "English";
+  document.getElementById("isk").innerHTML = "Icelandic";
+  document.getElementById("cart").innerHTML = "Cart";
+  document.getElementById("su").innerHTML = "Sign up";
+  document.getElementById("language").innerHTML = "Language";
+  document.getElementById("username").innerHTML = "Username";
+  document.getElementById("pass").innerHTML = "Password";
+}
