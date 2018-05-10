@@ -16,21 +16,21 @@ namespace BookCave.Repositories
             _db = new DataContext();
         }
 
-        public List<BookListView> GetAllBookListsForUser(UserView user)
+        public IEnumerable<BookListView> GetAllBookListsForUser(UserView user)
         {
             return GetAllBookListsForUser(user.ID);
         }
 
-        public List<BookListView> GetAllBookListsForUser(int userID)
+        public IEnumerable<BookListView> GetAllBookListsForUser(int userID)
         {
             var booklists = (from bl in _db.Lists where bl.CustomerID == userID 
-                             select GetViewForEntity(bl)).ToList();
+                             select GetViewForEntity(bl));
             return booklists;
         }
-        public List<BookListView> GetAllBookLists()
+        public IEnumerable<BookListView> GetAllBookLists()
         {
             var booklists = (from bl in _db.Lists select GetViewForEntity(bl));
-            return booklists.ToList();
+            return booklists;
         }
 
         public void AddBookList(BookListView bookList)
@@ -60,7 +60,7 @@ namespace BookCave.Repositories
             
         }
 
-        public List<ShortBookView> GetBooksForList(int listID)
+        public IEnumerable<ShortBookView> GetBooksForList(int listID)
         {
             BookRepository bookRepo = new BookRepository(); // Not ideal, but saves a lot of typing
             
@@ -69,7 +69,7 @@ namespace BookCave.Repositories
                          where bl.ListID == listID
                          select bookRepo.GetShortViewForEntity(b));
             
-            return books.ToList();
+            return books;
         }
 
         public BookListView GetViewForEntity(CustomerList list)

@@ -29,7 +29,19 @@ namespace BookCave.Repositories
                 Title = book.Title
             };
             //TODO: Handle genres and authors
+            
             _db.Add(bookEntity);
+            _db.SaveChanges();
+        }
+
+        public void AddAuthorToBook(AuthorView author, BookView book)
+        {
+            AddAuthorToBook(author.ID, book.ID);
+        }
+
+        public void AddAuthorToBook(int authorID, int bookID)
+        {
+            _db.Add(new BookAuthor{BookID = bookID, AuthorID = authorID});
             _db.SaveChanges();
         }
 
@@ -76,20 +88,20 @@ namespace BookCave.Repositories
         }
 
         //Intended for when you click on a book.
-        public List<BookView> GetAllDetailedBookView()
+        public IEnumerable<BookView> GetAllDetailedBookView()
         {
             var books = (from b in _db.Books select 
-                         GetBookViewForEntity(b)).ToList();
+                         GetBookViewForEntity(b));
             return books;
         }
 
         //Intended for quick summaries of books (lists, front page, etc)
-        public List<ShortBookView> GetAllBooksShortView()
+        public IEnumerable<ShortBookView> GetAllBooksShortView()
         {
             var books = (from b  in _db.Books 
                          //join ba in _db.BookAuthors on b.ID equals ba.BookID
                          //join a  in _db.Authors on ba.AuthorID equals a.ID
-                         select GetShortViewForEntity(b)).ToList();
+                         select GetShortViewForEntity(b));
 
             return books;
         }
@@ -111,7 +123,7 @@ namespace BookCave.Repositories
                                             Description = a.Description,
                                             ImagePath = a.ImagePath,
                                             Name = a.Name
-                                        }).DefaultIfEmpty(new AuthorView{Name = "Unknown Author" }).ToList(),
+                                        }).DefaultIfEmpty(new AuthorView{Name = "Unknown Author" }),
                     CoverPath       = b.CoverPath,
                     Price           = b.Price,
                     PriceModifier   = b.PriceModifier,
@@ -126,7 +138,7 @@ namespace BookCave.Repositories
                                         {
                                             ID = g.ID,
                                             Name = g.Name
-                                        }).DefaultIfEmpty(new GenreView{ Name = "Unknown Genre" }).ToList()
+                                        }).DefaultIfEmpty(new GenreView{ Name = "Unknown Genre" })
                 };
             return book;
         }
@@ -134,36 +146,37 @@ namespace BookCave.Repositories
         public ShortBookView GetShortViewForEntity(Book b)
         {
             if(b == null) return null;
-            ShortBookView book = 
-                new ShortBookView
-                {
-                    BookID              = b.ID,
-                    Authors             = (from ba in _db.BookAuthors 
-                                            join a in _db.Authors on ba.AuthorID equals a.ID 
-                                            where ba.BookID == b.ID select new AuthorView
-                                            {
-                                                Birthday = a.Birthday,
-                                                Description = a.Description,
-                                                ID = a.ID,
-                                                ImagePath = a.ImagePath,
-                                                Name = a.Name
-                                            }).DefaultIfEmpty(new AuthorView{Name = "Unknown Author" }).ToList(),
-                                            /*string.Join(" & ", (from ba in _db.BookAuthors 
-                                            join a in _db.Authors on ba.AuthorID equals a.ID 
-                                            where ba.BookID == b.ID select a.Name).DefaultIfEmpty("Unknown")),*/
-                    BookCoverPath       = b.CoverPath,
-                    BookPrice           = b.Price,
-                    BookPriceModifier   = b.PriceModifier,
-                    BookTitle           = b.Title,
-                    BookRating          = (from br in _db.Reviews where br.BookID == b.ID select br.Rating).DefaultIfEmpty(0f).Average(),
-                    Genres              = (from bg in _db.BookGenres
+            var authors = (from ba in _db.BookAuthors 
+                            join a in _db.Authors on ba.AuthorID equals a.ID 
+                            where ba.BookID == b.ID select new AuthorView
+                            {
+                                Birthday = a.Birthday,
+                                Description = a.Description,
+                                ID = a.ID,
+                                ImagePath = a.ImagePath,
+                                Name = a.Name
+                            }).DefaultIfEmpty(new AuthorView{Name = "Unknown Author" });
+                  
+            var ratings = (from br in _db.Reviews where br.BookID == b.ID select br.Rating).DefaultIfEmpty(0f);
+            var genres = (from bg in _db.BookGenres
                                             join g in _db.Genres on bg.GenreID equals g.ID
                                             where bg.BookID == b.ID
                                             select new GenreView
                                             {
                                                 ID = g.ID,
                                                 Name = g.Name
-                                            }).DefaultIfEmpty(new GenreView{ Name = "Unknown Genre" }).ToList()
+                                            }).DefaultIfEmpty(new GenreView{ Name = "Unknown Genre" });
+            ShortBookView book = 
+                new ShortBookView
+                {
+                    BookID              = b.ID,
+                    Authors             = authors,
+                    BookCoverPath       = b.CoverPath,
+                    BookPrice           = b.Price,
+                    BookPriceModifier   = b.PriceModifier,
+                    BookTitle           = b.Title,
+                    BookRating          = ratings,
+                    Genres              = genres
                 };
             return book;
         }

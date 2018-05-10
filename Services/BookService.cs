@@ -17,22 +17,23 @@ namespace BookCave.Services
         }
 
         //Search functions
-        public List<ShortBookView> GetAllBooksByAuthor(string authorName)
+        public IEnumerable<ShortBookView> GetAllBooksByAuthor(string authorName)
         {
-            authorName = authorName.ToLower();
+            /*authorName = authorName.ToLower();
             var allBooks = GetAllBooksShort();
-            var searchResults = (from b in allBooks where b.Authors.Exists(x => x.Name == authorName) select b).ToList();
+            var searchResults = (from b in allBooks where b.Authors.Exists(x => x.Name == authorName) select b);
 
-            return searchResults;
+            return searchResults;*/
+            return null;
         }
 
         //Generic fetchers
-        public List<ShortBookView> GetAllBooksShort()
+        public IEnumerable<ShortBookView> GetAllBooksShort()
         {
             return _bookRepo.GetAllBooksShortView();
         }
 
-        public List<BookView> GetAllBooksDetailed()
+        public IEnumerable<BookView> GetAllBooksDetailed()
         {
             return _bookRepo.GetAllDetailedBookView();
         }

@@ -12,8 +12,8 @@ using System;
 namespace vln2_group42.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20180504165158_testMigration")]
-    partial class testMigration
+    [Migration("20180510140836_initialMigration")]
+    partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,7 +33,8 @@ namespace vln2_group42.Migrations
 
                     b.Property<string>("ImagePath");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("ID");
 
@@ -47,7 +48,8 @@ namespace vln2_group42.Migrations
 
                     b.Property<string>("CoverPath");
 
-                    b.Property<string>("ISBN");
+                    b.Property<string>("ISBN")
+                        .IsRequired();
 
                     b.Property<int>("InventoryCount");
 
@@ -57,7 +59,8 @@ namespace vln2_group42.Migrations
 
                     b.Property<DateTime>("PublishDate");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .IsRequired();
 
                     b.HasKey("ID");
 
@@ -141,17 +144,19 @@ namespace vln2_group42.Migrations
 
                     b.Property<string>("Country");
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("HashedPassword");
 
-                    b.Property<string>("Password");
+                    b.Property<bool>("IsStaff");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<string>("PhoneNumber");
 
                     b.Property<string>("Postcode");
-
-                    b.Property<string>("Salt");
 
                     b.HasKey("ID");
 
@@ -167,7 +172,8 @@ namespace vln2_group42.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .IsRequired();
 
                     b.HasKey("ID");
 
@@ -179,7 +185,8 @@ namespace vln2_group42.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("ID");
 
@@ -198,8 +205,6 @@ namespace vln2_group42.Migrations
                     b.Property<float>("ShippingCost");
 
                     b.Property<int>("Status");
-
-                    b.Property<float>("TotalCost");
 
                     b.HasKey("ID");
 

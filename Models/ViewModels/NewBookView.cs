@@ -30,7 +30,7 @@ namespace BookCave.Models.ViewModels
         public string ISBN {get; set;}
         public DateTime PublishDate {get; set;}
         public int InventoryCount {get; set;}
-        public List<int> AuthorIDs {get; set;}
-        public List<int> GenreIDs {get; set;}
+        public IEnumerable<int> AuthorIDs {get; set;}
+        public IEnumerable<int> GenreIDs {get; set;}
     }
 }

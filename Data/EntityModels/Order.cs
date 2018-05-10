@@ -14,7 +14,7 @@ namespace BookCave.Data.EntityModels
         public Models.Enums.OrderStatus Status {get; set;}
         public DateTime DateCompleted {get; set;}
         public float ShippingCost {get; set;}
-        public float TotalCost {get; set;}
+        // public float TotalCost {get; set;} //Derived data
 
         // public List<BookInOrder> BooksInOrder {get; set;}
     }

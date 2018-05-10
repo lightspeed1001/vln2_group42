@@ -5,12 +5,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
+using BookCave.Services;
+using BookCave.Repositories;
 
 namespace BookCave.Controllers
 {
     public class BookController : Controller
     {
-        public IActionResult ViewBook()
+        public IActionResult ViewBook(int bookID)
         {
             return View();
         }

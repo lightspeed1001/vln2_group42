@@ -27,7 +27,24 @@ namespace BookCave.Controllers
             return View(books2);*/
             GenreRepository genreRepo = new GenreRepository();
             ViewBag.Categories = genreRepo.GetAllGenres();
+
+            TestData();
             return View();
+        }
+
+        public static void TestData()
+        {
+            BookRepository bookRepo = new BookRepository();
+            var books = bookRepo.GetAllBooksShortView();
+            foreach (var book in books)
+            {
+                string bla = "Title: " + book.BookTitle + "\n";
+                bla       += "Author(s): " + String.Join(" & ", book.Authors.Select(x => x.Name))  + "\n";
+                bla       += "Genre(s): " + String.Join(" & ", book.Genres.Select(x => x.Name))  + "\n";
+                bla       += "Rating: " + book.BookRating.Average() + "\n";
+                bla       += "Price: " + book.BookPrice + "\n";
+                Console.WriteLine(bla);
+            }
         }
 
         public IActionResult Contact()

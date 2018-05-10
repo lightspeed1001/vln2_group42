@@ -205,8 +205,6 @@ namespace vln2_group42.Migrations
 
                     b.Property<int>("Status");
 
-                    b.Property<float>("TotalCost");
-
                     b.HasKey("ID");
 
                     b.ToTable("Orders");

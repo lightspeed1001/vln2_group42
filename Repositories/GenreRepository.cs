@@ -16,29 +16,29 @@ namespace BookCave.Repositories
             _db = new DataContext();
         }
 
-        public List<GenreView> GetAllGenresForBook(BookView book)
+        public IEnumerable<GenreView> GetAllGenresForBook(BookView book)
         {
             return GetAllGenresForBook(book.ID);
         }
 
-        public List<GenreView> GetAllGenresForBook(ShortBookView book)
+        public IEnumerable<GenreView> GetAllGenresForBook(ShortBookView book)
         {
             return GetAllGenresForBook(book.BookID);
         }
 
-        public List<GenreView> GetAllGenresForBook(int bookID)
+        public IEnumerable<GenreView> GetAllGenresForBook(int bookID)
         {
             var derp = (from gb in _db.BookGenres
                         join g in _db.Genres on gb.GenreID equals g.ID
                         where gb.BookID == bookID
-                        select GetViewForEntity(g)).ToList();
+                        select GetViewForEntity(g));
 
             return derp;
         }
-        public List<GenreView> GetAllGenres()
+        public IEnumerable<GenreView> GetAllGenres()
         {
             var derp = (from g in _db.Genres
-                        select GetViewForEntity(g)).ToList();
+                        select GetViewForEntity(g));
 
             return derp;
         }

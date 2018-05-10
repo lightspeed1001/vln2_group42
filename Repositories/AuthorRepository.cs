@@ -16,24 +16,24 @@ namespace BookCave.Repositories
             _db = new DataContext();
         }
 
-        public List<AuthorView> GetAllAuthorsForBook(BookView book)
+        public IEnumerable<AuthorView> GetAllAuthorsForBook(BookView book)
         {
             return GetAllAuthorsForBook(book.ID);
         }
 
-        public List<AuthorView> GetAllAuthorsForBook(ShortBookView book)
+        public IEnumerable<AuthorView> GetAllAuthorsForBook(ShortBookView book)
         {
             return GetAllAuthorsForBook(book.BookID);
         }
 
-        public List<AuthorView> GetAllAuthorsForBook(int bookID)
+        public IEnumerable<AuthorView> GetAllAuthorsForBook(int bookID)
         {
             var authors = (from a in _db.Authors
                            join ba in _db.BookAuthors on a.ID equals ba.AuthorID
                            where ba.BookID == bookID
                            select GetAuthorViewForEntity(a));
             
-            return authors.ToList();
+            return authors;
         }
 
         public AuthorView GetAuthorByID(int id)
@@ -43,11 +43,11 @@ namespace BookCave.Repositories
             return GetAuthorViewForEntity(author);
         }
 
-        public List<AuthorView> GetAllAuthors()
+        public IEnumerable<AuthorView> GetAllAuthors()
         {
             var authors = (from a in _db.Authors select GetAuthorViewForEntity(a));
 
-            return authors.ToList();
+            return authors;
         }
 
         public void AddAuthor(AuthorView Author)

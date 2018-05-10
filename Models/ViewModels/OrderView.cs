@@ -8,13 +8,11 @@ namespace BookCave.Models.ViewModels
     public class OrderView
     {
         public int ID { get; set; }
-        public List<BookView> Books { get; set; }
+        public IEnumerable<ShortBookView> Books { get; set; }
         public UserView Owner { get; set; }
         public OrderStatus Status { get; set; }
-
-        public int GetTotalPrice()
-        {
-            return 0;
-        }
+        public float ShippingCost {get; set;}
+        public DateTime DateCompleted {get; set;}
+        public float TotalPrice {get; set;}
     }
 }
