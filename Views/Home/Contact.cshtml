@@ -1,17 +1,19 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Sign up";
 }
 <h2>@ViewData["Title"]</h2>
 
 <p>Are you a new customer? Fill in your details below:</p>
 <label for="passWord">Password</label>
-<input style="password" name="passWord"><br>
+<input type="password" name="passWord"><br>
+<div>
 <h3>Contact details</h3>
 <label for="emailAddress">Email address</label>
 <input style="text" name="emailAddress"><br>
 <label for="telephoneNumber">Telephone Number</label>
 <input style="text" name="telephoneNumber">
+</div>
+<div>
 <h3>Billing address</h3>
 <label for="fullName">Full Name</label>
 <input style="text" name="fullName"><br>
@@ -31,13 +33,18 @@
     <option value="eng">England</option>
     <option value="fra">France</option>
 </select>
+</div>
 <h3>Payment</h3>
 <label for="cardType">Card type</label>
-<select name="cardType">
+<select id="mySelect" name="cardType" onchange="cardFunction()">
+    <option value=""></option>
     <option value="visa">Visa</option>
     <option value="masterCard">Master Card</option>
     <option value="americanExpress">American express</option>
 </select>
+<div id="img"></div>
+<p id="x"></p>
+
 <label for="cardNumber">Card Number</label>
 <input style="text" name="cardNumber"><br>
 <label for="date">Birthdate</label>
@@ -46,4 +53,4 @@
 <input style="text" name="nameOnCard"><br>
 <label for="CVV2">CVV2 Number</label>
 <input style="text" name="CVV2"><br>
-<button type="submit" class="btn btn-success" name="buyNow">Buy Now</button>
+<button type="submit" class="btn btn-success" name="buyNow" onclick="location.href='http://localhost:5000/Home/Profile'" type="button">Buy Now</button>
