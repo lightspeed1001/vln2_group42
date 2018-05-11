@@ -10,7 +10,6 @@ namespace BookCave.Models.ViewModels
         public IEnumerable<AuthorView> Authors { get; set; }
         public float Rating { get; set;}
         public float Price { get; set; }
-        public float PriceModifier { get; set; }
         public string CoverPath { get; set; }
         public string ISBN { get; set; }
         public DateTime Published { get; set; }

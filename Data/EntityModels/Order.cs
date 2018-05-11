@@ -1,11 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using BookCave.Models.Enums;
 
 namespace BookCave.Data.EntityModels
 {
     public class Order
     {
+        public Order()
+        {
+            Status = OrderStatus.New;
+        }
         public int ID {get; set;}
         
         [Required]

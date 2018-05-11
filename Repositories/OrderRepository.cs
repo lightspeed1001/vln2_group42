@@ -22,16 +22,46 @@ namespace BookCave.Repositories
             return order;
         }
 
-        public List<OrderView> GetOrdersForUser(int userID)
+        public IEnumerable<OrderView> GetOrdersForUser(int userID)
         {
-            throw new NotImplementedException();
+            var orders = (from o in _db.Orders where o.CustomerID == userID select GetViewForEntity(o));
+            return orders;
         }
 
-        public void AddOrder(OrderView order)
+        public void AddBookToOrder(int bookID, int orderID)
         {
-            Order orderEntity = GetEntityForView(order);
-            _db.Add(orderEntity);
+            BookInOrder bookInOrder = new BookInOrder{BookID = bookID, OrderID = orderID};
+            _db.Add(bookInOrder);
+
+             _db.SaveChanges();
+        }
+
+        public void RemoveBookFromOrder(int bookID, int orderID)
+        {
+            var bookInOrder = (from bo in _db.BooksInOrders
+                                where bo.BookID == bookID && bo.OrderID == orderID
+                                select bo).Single();
+        }
+
+        public void AddBooksToOrder(IEnumerable<int> bookIDs, int orderID)
+        {
+            foreach (var bookID in bookIDs)
+            {
+                AddBookToOrder(bookID, orderID);
+            }
+        }
+
+        //Returns the ID of the new order
+        public int AddOrder(NewOrderView order)
+        {
+            Order orderEntity = new Order
+            {
+                CustomerID = order.OwnerID,
+                ShippingCost = order.ShippingCost
+            };
+            var derp = _db.Add(orderEntity);
             _db.SaveChanges();
+            return derp.Entity.ID;
         }
 
         public void RemoveOrder(OrderView order)
@@ -49,23 +79,30 @@ namespace BookCave.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<ShortBookView> GetAllBooksForOrder(OrderView order)
+        public IEnumerable<BookInOrderView> GetAllBooksForOrder(OrderView order)
         {
             return GetAllBooksForOrder(order.ID);
         }
 
-        public IEnumerable<ShortBookView> GetAllBooksForOrder(Order order)
+        public IEnumerable<BookInOrderView> GetAllBooksForOrder(Order order)
         {
             return GetAllBooksForOrder(order.ID);
         }
 
-        public IEnumerable<ShortBookView> GetAllBooksForOrder(int orderID)
+        public IEnumerable<BookInOrderView> GetAllBooksForOrder(int orderID)
         {
             BookRepository bookRepo = new BookRepository();
-            var books = (from b in _db.Books
-                         join bo in _db.BooksInOrders on b.ID equals bo.BookID
+            var books = (from bo in _db.BooksInOrders
                          where bo.OrderID == orderID
-                         select bookRepo.GetShortViewForEntity(b));
+                         select new BookInOrderView
+                         {
+                             OrderID = orderID,
+                             BookID = bo.BookID,
+                             Price = bo.Price,
+                             Book = bookRepo.GetShortBookViewByID(bo.BookID),
+                             NumberOfCopies = bo.NumberOfCopies
+                         });
+            
             return books;
         }
 
@@ -91,6 +128,7 @@ namespace BookCave.Repositories
                 Books = GetAllBooksForOrder(order.ID),
                 ID = order.ID,
                 Owner = customerRepo.GetUserViewForID(order.CustomerID),
+                OwnerID = order.CustomerID,
                 Status = order.Status,
                 DateCompleted = order.DateCompleted,
                 ShippingCost = order.ShippingCost

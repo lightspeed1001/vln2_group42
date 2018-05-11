@@ -26,7 +26,7 @@ namespace BookCave.Repositories
 
         public void EditUser(UserEditView user)
         {
-            Customer c = (from u in _db.Customers where u.ID == user.ID select u).SingleOrDefault(null);
+            Customer c = (from u in _db.Customers where u.ID == user.ID select u).SingleOrDefault();
             if(c == null) return;
             c.Address = user.Address;
             c.CardExpiry = user.CardExp;
@@ -87,7 +87,7 @@ namespace BookCave.Repositories
                             PhoneNumber = u.PhoneNumber,
                             Postcode = u.Postcode
                         });
-            return users.SingleOrDefault(null);
+            return users.SingleOrDefault();
         }
 
         //idk, can probably find a use for this
@@ -104,7 +104,7 @@ namespace BookCave.Repositories
                         Postcode = u.Postcode,
                         PhoneNumber = u.PhoneNumber
                     });
-            return users.SingleOrDefault(null);
+            return users.SingleOrDefault();
         }
     }
 }

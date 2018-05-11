@@ -23,9 +23,9 @@
         {
             <tr>
                 <td>@book.Title</td>
-                <td>@foreach (var author in book.Authors) {@author.Name}</td>
+                <td>@foreach (var author in book.Authors) {<p>@author.Name</p>}</td>
                 <td>@book.BookPrice</td>
-                <td>@foreach (var genres in book.Genres) {@genres.Name}</td>
+                <td>@foreach (var genres in book.Genres) {<p>@genres.Name</p>}</td>
             </tr>
         }
     </table>

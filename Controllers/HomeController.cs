@@ -8,7 +8,9 @@ using BookCave.Models;
 using BookCave.Data;
 using BookCave.Data.EntityModels;
 using BookCave.Services;
+using BookCave.Repositories;
 using BookCave.Models.ViewModels;
+using BookCave.Models.Enums;
 
 namespace BookCave.Controllers
 {
@@ -57,8 +59,30 @@ namespace BookCave.Controllers
                 bla       += "Genre(s): " + String.Join(" & ", book.Genres.Select(x => x.Name))  + "\n";
                 bla       += "Rating: " + book.BookRating.Average() + "\n";
                 bla       += "Price: " + book.BookPrice + "\n";
-                Console.WriteLine(bla);
+                //Console.WriteLine(bla);
             }
+
+            OrderRepository orderRepo = new OrderRepository();
+            /*NewOrderView newOrder = new NewOrderView
+            {
+                OwnerID = 2,
+                ShippingCost = 10f,
+                BookIDs = new int[]{3, 4, 2}
+            };
+
+            int orderID = orderRepo.AddOrder(newOrder);
+            orderRepo.AddBooksToOrder(newOrder.BookIDs, orderID);*/
+            int orderID = 2;
+            OrderView testOrder = orderRepo.GetOrderByID(orderID);
+            string bla2  = "Order ID: " + testOrder.ID + "\n";
+                   bla2 += "Owner ID: " + testOrder.OwnerID + "\n";
+                   bla2 += "--Books--" + "\n";
+            foreach (var b in testOrder.Books)
+            {
+                bla2 += "Title: " + b.Book.BookTitle + "; ";
+                bla2 += "Count: " + b.NumberOfCopies + "\n";
+            }
+            //Console.WriteLine(bla2);
         }
 
         public IActionResult Contact()

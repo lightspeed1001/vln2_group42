@@ -24,7 +24,6 @@ namespace BookCave.Repositories
                 InventoryCount = book.InventoryCount,
                 ISBN = book.ISBN,
                 Price = book.Price,
-                PriceModifier = book.PriceModifier,
                 PublishDate = book.PublishDate,
                 Title = book.Title
             };
@@ -66,7 +65,6 @@ namespace BookCave.Repositories
                 eBook.InventoryCount = book.InventoryCount;
                 eBook.ISBN = book.ISBN;
                 eBook.Price = book.Price;
-                eBook.PriceModifier = book.PriceModifier;
                 eBook.PublishDate = book.Published;
                 eBook.Title = book.Title;
 
@@ -75,6 +73,24 @@ namespace BookCave.Repositories
                 
                 _db.SaveChanges();
             }
+        }
+
+        public IEnumerable<BookView> GetBooksInOrder(int orderID)
+        {
+            var books = (from bo in _db.BooksInOrders
+                         join b in _db.Books on bo.BookID equals b.ID
+                         where bo.OrderID == orderID
+                         select GetBookViewForEntity(b));
+            return books;
+        }
+
+        public IEnumerable<ShortBookView> GetShortBooksInOrder(int orderID)
+        {
+            var books = (from bo in _db.BooksInOrders
+                         join b in _db.Books on bo.BookID equals b.ID
+                         where bo.OrderID == orderID
+                         select GetShortViewForEntity(b));
+            return books;
         }
 
         public BookView GetBookByID(int id)
@@ -114,36 +130,38 @@ namespace BookCave.Repositories
         public BookView GetBookViewForEntity(Book b)
         {
             if(b == null) return null;
+            var authors = (from ba in _db.BookAuthors 
+                            join a in _db.Authors on ba.AuthorID equals a.ID 
+                            where ba.BookID == b.ID 
+                            select new AuthorView
+                            {
+                                ID = a.ID,
+                                Birthday = a.Birthday,
+                                Description = a.Description,
+                                ImagePath = a.ImagePath,
+                                Name = a.Name
+                            }).DefaultIfEmpty(new AuthorView{Name = "Unknown Author" });
+            var ratings = (from br in _db.Reviews where br.BookID == b.ID select br.Rating).DefaultIfEmpty(0f).Average();
+            var genres =  (from bg in _db.BookGenres
+                            join g in _db.Genres on bg.GenreID equals g.ID
+                            where bg.BookID == b.ID
+                            select new GenreView
+                            {
+                                ID = g.ID,
+                                Name = g.Name
+                            }).DefaultIfEmpty(new GenreView{ Name = "Unknown Genre" });
             BookView book =
                 new BookView
                 {
                     ID              = b.ID,
-                    Authors         = (from ba in _db.BookAuthors 
-                                        join a in _db.Authors on ba.AuthorID equals a.ID 
-                                        where ba.BookID == b.ID 
-                                        select new AuthorView
-                                        {
-                                            ID = a.ID,
-                                            Birthday = a.Birthday,
-                                            Description = a.Description,
-                                            ImagePath = a.ImagePath,
-                                            Name = a.Name
-                                        }).DefaultIfEmpty(new AuthorView{Name = "Unknown Author" }),
+                    Authors         = authors,
                     CoverPath       = b.CoverPath,
                     Price           = b.Price,
-                    PriceModifier   = b.PriceModifier,
                     Title           = b.Title,
-                    Rating          = (from br in _db.Reviews where br.BookID == b.ID select br.Rating).DefaultIfEmpty(0f).Average(),
+                    Rating          = ratings,
                     ISBN            = b.ISBN,
                     Published       = b.PublishDate,
-                    Genres          = (from bg in _db.BookGenres
-                                        join g in _db.Genres on bg.GenreID equals g.ID
-                                        where bg.BookID == b.ID
-                                        select new GenreView
-                                        {
-                                            ID = g.ID,
-                                            Name = g.Name
-                                        }).DefaultIfEmpty(new GenreView{ Name = "Unknown Genre" })
+                    Genres          = genres
                 };
             return book;
         }
@@ -178,7 +196,6 @@ namespace BookCave.Repositories
                     Authors             = authors,
                     BookCoverPath       = b.CoverPath,
                     BookPrice           = b.Price,
-                    BookPriceModifier   = b.PriceModifier,
                     BookTitle           = b.Title,
                     BookRating          = ratings,
                     Genres              = genres
