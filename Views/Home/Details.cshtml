@@ -1,6 +1,5 @@
-
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = @ViewBag.PageTitle;
 }
 <div class="categories">
     <h3 class="marbot">Categories</h3>
@@ -11,13 +10,13 @@
         }      
     </div>
 </div>
-<div>
+<div class="bookTable">
     <table class="table table-striped table-hover">
         <tr>
             <th>Title</th>
-            <th>Authors</th>
+            <th>Author/s</th>
             <th>Price</th>
-            <th>Genres</th>
+            <th>Genre/s</th>
         </tr>
         @foreach (var book in ViewBag.Books) 
         {

@@ -50,6 +50,7 @@ namespace BookCave.Controllers
             var books = bookRepo.GetShortBooksForGenre(id.GetValueOrDefault());
             //var BookDetails = bookSer.GetAllBooksByID(id);
             ViewBag.Books = books;
+            ViewBag.PageTitle = GenreSer.GetGenreNameByID(id);
             return View();
         }
 

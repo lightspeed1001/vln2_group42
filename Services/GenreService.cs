@@ -21,5 +21,12 @@ namespace BookCave.Services
             var genres = _genreRepo.GetAllGenres();
             return genres;
         }
+        public string GetGenreNameByID(int? id)
+        {
+            var genres = _genreRepo.GetAllGenres();
+            var genview = (from g in genres where g.ID == id select g).First();
+            string res = genview.Name;
+            return res;
+        }
     }
 }

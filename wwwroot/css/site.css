@@ -90,7 +90,10 @@
     border-color: red;
 }
 * {box-sizing:border-box}
-
+.bookTable {
+    float: right;
+    width: 900px;
+}
 .slideshow {
     float: left;
     margin-left: 300px;
@@ -178,4 +181,31 @@
 @keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
+}
+.bookcontainer {
+    width: 700px;
+    height: 1000px;
+    float: left;
+}
+.bookimagecontainer {
+    float: left;
+    width: 314px;
+}
+.booktitle {
+    float: right;
+    width: 300px;
+}
+.btn-book {
+    float: right;
+    margin-top: 20px;
+}
+.bookprice {
+    float: left;
+}
+.bookimg {
+    width: 300px;
+    height: 400px;;
+}
+.genrecontainer {
+    float: right;
 }

@@ -52,13 +52,12 @@
     @foreach (var item in ViewBag.NewestThree)
     {
         <div class="speclit">
-            <a href=""><img class="topselimg" src="@item.ImagePath" alt=""></a>
+            <a asp-controller="Book" asp-action="Details" asp-route-id="@item.ID"><img class="topselimg" src="@item.ImagePath" alt=""></a>
             <h5>@item.Title</h5>
         </div>
         
     }
 </div>
-
 
 <div class="topselling">
     <h3 class="marbot" id="tsb">Top Selling books</h3>
