@@ -24,7 +24,7 @@
                 <td><a asp-controller="Book" asp-action="Details" asp-route-id="@book.BookID">@book.BookTitle</a></td>
                 <td>@foreach (var author in book.Authors) {<a asp-controller="Author" asp-action="Details" asp-route-id="@author.ID"><p>@author.Name</p></a>}</td>
                 <td>@book.BookPrice</td>
-                <td>@foreach (var genres in book.Genres) {<a asp-action="Home" asp-controller="Details" asp-route-id="@genres.ID"><p>@genres.Name</p></a>}</td>
+                <td>@foreach (var genres in book.Genres) {<a asp-action="Details" asp-controller="Home" asp-route-id="@genres.ID"><p>@genres.Name</p></a>}</td>
             </tr>
         }
     </table>
