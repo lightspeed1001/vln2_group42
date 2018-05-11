@@ -8,7 +8,7 @@ namespace BookCave.Models.ViewModels
         public int ID { get; set; }
         public string Title { get; set; }
         public IEnumerable<AuthorView> Authors { get; set; }
-        public float Rating { get; set;}
+        public IEnumerable<float> Rating { get; set;}
         public float Price { get; set; }
         public string CoverPath { get; set; }
         public string ISBN { get; set; }

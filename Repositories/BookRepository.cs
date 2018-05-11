@@ -93,6 +93,27 @@ namespace BookCave.Repositories
             return books;
         }
 
+        public IEnumerable<ShortBookView> GetShortBooksForGenre(int genreID)
+        {
+            var books = (from bg in _db.BookGenres
+                         join b in _db.Books on bg.BookID equals b.ID
+                         where bg.GenreID == genreID
+                         select GetShortViewForEntity(b));
+
+            return books;   
+        }
+
+        
+        public IEnumerable<BookView> GetDetailedBooksForGenre(int genreID)
+        {
+            var books = (from bg in _db.BookGenres
+                         join b in _db.Books on bg.BookID equals b.ID
+                         where bg.GenreID == genreID
+                         select GetBookViewForEntity(b));
+
+            return books;   
+        }
+
         public BookView GetBookByID(int id)
         {
             return GetBookViewForEntity(_db.Books.Single(x => x.ID == id));
@@ -141,7 +162,7 @@ namespace BookCave.Repositories
                                 ImagePath = a.ImagePath,
                                 Name = a.Name
                             }).DefaultIfEmpty(new AuthorView{Name = "Unknown Author" });
-            var ratings = (from br in _db.Reviews where br.BookID == b.ID select br.Rating).DefaultIfEmpty(0f).Average();
+            var ratings = (from br in _db.Reviews where br.BookID == b.ID select br.Rating).DefaultIfEmpty(0f);
             var genres =  (from bg in _db.BookGenres
                             join g in _db.Genres on bg.GenreID equals g.ID
                             where bg.BookID == b.ID

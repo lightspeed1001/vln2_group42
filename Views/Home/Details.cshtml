@@ -22,7 +22,7 @@
         @foreach (var book in ViewBag.Books) 
         {
             <tr>
-                <td>@book.Title</td>
+                <td>@book.BookTitle</td>
                 <td>@foreach (var author in book.Authors) {<p>@author.Name</p>}</td>
                 <td>@book.BookPrice</td>
                 <td>@foreach (var genres in book.Genres) {<p>@genres.Name</p>}</td>

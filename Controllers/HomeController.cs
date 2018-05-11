@@ -41,10 +41,14 @@ namespace BookCave.Controllers
         public IActionResult Details(int? id) 
         {
             GenreService GenreSer = new GenreService();
-            BookService bookSer = new BookService();
+            //BookService bookSer = new BookService();
             ViewBag.Categories = GenreSer.GetAllGenres();
-            var BookDetails = bookSer.GetAllBooksByID(id);
-            ViewBag.Books = BookDetails;
+            BookRepository bookRepo = new BookRepository();
+            //Use shortbookview for when you just need a quick overview of a book
+            //For example when listing lots of books.
+            var books = bookRepo.GetShortBooksForGenre(id.GetValueOrDefault());
+            //var BookDetails = bookSer.GetAllBooksByID(id);
+            ViewBag.Books = books;
             return View();
         }
 
