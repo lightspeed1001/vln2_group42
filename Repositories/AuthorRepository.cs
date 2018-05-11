@@ -36,7 +36,7 @@ namespace BookCave.Repositories
             return authors;
         }
 
-        public AuthorView GetAuthorByID(int id)
+        public AuthorView GetAuthorByID(int? id)
         {
             var author = (from a in _db.Authors where a.ID == id select a).Single();
             
