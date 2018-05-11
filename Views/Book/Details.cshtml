@@ -14,5 +14,5 @@
     </div>
 </div>
 <div class="genrecontainer">
-    <h4>Genres: @foreach(var genres in ViewBag.Book.Genres) {<p>@genres.Name</p>}</h4>
+    <h4>Genres: @foreach(var genres in ViewBag.Book.Genres) {<a asp-action="Details" asp-controller="Home" asp-route-id="@genres.ID"><p>@genres.Name</p></a>}</h4>
 </div>
