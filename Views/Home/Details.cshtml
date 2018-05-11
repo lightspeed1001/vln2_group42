@@ -21,10 +21,10 @@
         @foreach (var book in ViewBag.Books) 
         {
             <tr>
-                <td>@book.BookTitle</td>
-                <td>@foreach (var author in book.Authors) {<p>@author.Name</p>}</td>
+                <td><a asp-controller="Book" asp-action="Details" asp-route-id="@book.BookID">@book.BookTitle</a></td>
+                <td>@foreach (var author in book.Authors) {<a asp-controller="Author" asp-action="Details" asp-route-id="@author.ID"><p>@author.Name</p></a>}</td>
                 <td>@book.BookPrice</td>
-                <td>@foreach (var genres in book.Genres) {<p>@genres.Name</p>}</td>
+                <td>@foreach (var genres in book.Genres) {<a asp-action="Home" asp-controller="Details" asp-route-id="@genres.ID"><p>@genres.Name</p></a>}</td>
             </tr>
         }
     </table>
