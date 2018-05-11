@@ -18,7 +18,13 @@ namespace BookCave.Controllers
             BookView book = new BookRepository().GetBookByID(bookID);
             return View(book);
         }
-        
+        public IActionResult Details(int? id)
+        {
+            BookService BookSer = new BookService();
+            var book = BookSer.GetAllBooksByID(id).First();
+            ViewBag.Book = book;
+            return View();
+        }
         public IActionResult EditBook()
         {
             

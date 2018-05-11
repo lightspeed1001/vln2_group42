@@ -28,8 +28,9 @@ namespace BookCave.Controllers
             
             return View(books2);*/
             GenreService GenreSer = new GenreService();
+            BookService BookSer = new BookService();
             ViewBag.Categories = GenreSer.GetAllGenres();
-
+            ViewBag.NewestThree = BookSer.GetFirstThreeBooks();
             //TestData();
             return View();
         }
@@ -49,6 +50,7 @@ namespace BookCave.Controllers
             var books = bookRepo.GetShortBooksForGenre(id.GetValueOrDefault());
             //var BookDetails = bookSer.GetAllBooksByID(id);
             ViewBag.Books = books;
+            ViewBag.PageTitle = GenreSer.GetGenreNameByID(id);
             return View();
         }
 

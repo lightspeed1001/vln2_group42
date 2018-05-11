@@ -17,17 +17,17 @@
 
         <!-- Full-width images with number and caption text -->
         <div class="mySlides fade">
-            <img src="https://www.w3schools.com/howto/img_nature_wide.jpg" style="width:100%">
+            <img class="imgslid" src="https://images.gr-assets.com/books/1348990566l/5470.jpg" style="width:100%">
             <div class="text">Caption Text</div>
         </div>
 
         <div class="mySlides fade">
-            <img src="https://www.w3schools.com/howto/img_fjords_wide.jpg" style="width:100%">
+            <img class="imgslid" src="https://images.gr-assets.com/books/1348990566l/5470.jpg" style="width:100%">
             <div class="text">Caption Two</div>
         </div>
 
         <div class="mySlides fade">
-            <img src="https://www.w3schools.com/howto/img_lights_wide.jpg" style="width:100%">
+            <img class="imgslid" src="https://images.gr-assets.com/books/1348990566l/5470.jpg" style="width:100%">
             <div class="text">Caption Three</div>
         </div>
 
@@ -47,20 +47,17 @@
 
 <!-- Special offer Container -->
 <div class="specialoffer">
-    <div class="speclit">
-            <a href=""><img class="topselimg" src="https://images.gr-assets.com/books/1348990566l/5470.jpg" alt=""></a>
-            <h5>1984 - George Orwell</h5>
-        </div>
-        <div class="speclit">
-            <a href=""><img class="topselimg" src="https://images.gr-assets.com/books/1348990566l/5470.jpg" alt=""></a>
-            <h5>1984 - George Orwell</h5>
-        </div>
-        <div class="speclit">
-            <a href=""><img class="topselimg" src="https://images.gr-assets.com/books/1348990566l/5470.jpg" alt=""></a>
-            <h5>1984 - George Orwell</h5>
-        </div>
-</div>
+    <h3>New Offer</h3>
 
+    @foreach (var item in ViewBag.NewestThree)
+    {
+        <div class="speclit">
+            <a asp-controller="Book" asp-action="Details" asp-route-id="@item.ID"><img class="topselimg" src="@item.ImagePath" alt=""></a>
+            <h5>@item.Title</h5>
+        </div>
+        
+    }
+</div>
 
 <div class="topselling">
     <h3 class="marbot" id="tsb">Top Selling books</h3>

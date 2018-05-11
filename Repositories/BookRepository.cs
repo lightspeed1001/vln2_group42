@@ -248,6 +248,7 @@ namespace BookCave.Repositories
                 {
                     ID = b.ID,
                     Title = b.Title,
+                    ImagePath = b.CoverPath,
                     Authors = authors,
                     BookPrice = b.Price,
                     Genres = genres

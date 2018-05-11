@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = @ViewBag.Book.Title;
+}
+<div class="bookcontainer">
+    <div class="bookimagecontainer">
+        <img class="bookimg" src="@ViewBag.Book.ImagePath" alt="@ViewBag.Book.Title">
+        <h3 class="bookprice">Price: @ViewBag.Book.BookPrice</h3>
+        <button class="btn-book btn-default">Add to Cart</button>
+    </div>
+    
+    <div class="booktitle">
+        <h1>@ViewBag.Book.Title</h1>
+        <h3>By: @foreach (var author in ViewBag.Book.Authors) {<p>@author.Name</p>}</h3>
+    </div>
+</div>
+<div class="genrecontainer">
+    <h4>Genres: @foreach(var genres in ViewBag.Book.Genres) {<p>@genres.Name</p>}</h4>
+</div>
