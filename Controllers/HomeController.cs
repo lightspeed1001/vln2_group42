@@ -28,8 +28,9 @@ namespace BookCave.Controllers
             
             return View(books2);*/
             GenreService GenreSer = new GenreService();
+            BookService BookSer = new BookService();
             ViewBag.Categories = GenreSer.GetAllGenres();
-
+            ViewBag.NewestThree = BookSer.GetFirstThreeBooks();
             //TestData();
             return View();
         }

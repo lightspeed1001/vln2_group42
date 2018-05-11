@@ -72,7 +72,7 @@
 }
 .specialoffer {
     height: 200px;
-    margin: auto;
+    margin-top: 100px;
     width: 60%;
     padding: 10px;
     text-align: center;
@@ -92,11 +92,11 @@
 * {box-sizing:border-box}
 
 .slideshow {
-    margin-top: 30px;
-    margin-left: 30px;
     float: left;
-    max-width: 600px;
-    position: relative;
+    margin-left: 300px;
+    max-width: 150px;
+    max-height: 200px;
+    
 }
 /* Slideshow container */
 
@@ -105,7 +105,10 @@
 .mySlides {
     display: none;
 }
-
+.imgslid {
+    width: 200px;
+    height: 250px;;
+}
 /* Next & previous buttons */
 .prev, .next {
     cursor: pointer;

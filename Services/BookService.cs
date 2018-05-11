@@ -41,6 +41,12 @@ namespace BookCave.Services
         {
             return _bookRepo.GetAllDetailedBookView();
         }
+        public IEnumerable<BookDetailsView> GetFirstThreeBooks()
+        {
+            var allBooks = _bookRepo.GetAllBookDetailsView();
+            var res = (from b in allBooks select b).OrderByDescending(b => b.ID).Take(3);
+            return res;
+        }
         public IEnumerable<BookDetailsView> GetAllBooksByID(int? id)
         {
             var allBooks = _bookRepo.GetAllBookDetailsView();
