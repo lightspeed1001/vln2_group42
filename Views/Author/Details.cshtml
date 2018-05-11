@@ -1,0 +1,14 @@
+@{
+    ViewData["Title"] = @ViewBag.Author.Name;
+}
+<div class="bookcontainer">
+    <div class="bookimagecontainer">
+        <img class="bookimg" src="@ViewBag.Author.ImagePath" alt="@ViewBag.Author.Name">
+    </div>
+    
+    <div class="booktitle">
+        <h1>@ViewBag.Author.Name</h1>
+        <h3>Birthday: @ViewBag.Author.Birthday</h3>
+        <p>@ViewBag.Author.Description</p>
+    </div>
+</div>

@@ -5,12 +5,12 @@
     <div class="bookimagecontainer">
         <img class="bookimg" src="@ViewBag.Book.ImagePath" alt="@ViewBag.Book.Title">
         <h3 class="bookprice">Price: @ViewBag.Book.BookPrice</h3>
-        <button class="btn-book btn-default">Add to Cart</button>
+        <button class="btn-book btn">Add to Cart</button>
     </div>
     
     <div class="booktitle">
         <h1>@ViewBag.Book.Title</h1>
-        <h3>By: @foreach (var author in ViewBag.Book.Authors) {<p>@author.Name</p>}</h3>
+        <h3>By: @foreach (var author in ViewBag.Book.Authors) {<a asp-controller="Author" asp-action="Details" asp-route-id="@author.ID"><p>@author.Name</p></a>}</h3>
     </div>
 </div>
 <div class="genrecontainer">
