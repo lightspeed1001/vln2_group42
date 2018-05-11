@@ -41,6 +41,8 @@ namespace BookCave.Repositories
             var bookInOrder = (from bo in _db.BooksInOrders
                                 where bo.BookID == bookID && bo.OrderID == orderID
                                 select bo).Single();
+            _db.Remove(bookInOrder);
+            _db.SaveChanges();
         }
 
         public void AddBooksToOrder(IEnumerable<int> bookIDs, int orderID)
@@ -76,7 +78,12 @@ namespace BookCave.Repositories
 
         public void EditOrder(OrderView order)
         {
-            throw new NotImplementedException();
+            var orderEntity = _db.Orders.Single(x => x.ID == order.ID);
+            orderEntity.DateCompleted = order.DateCompleted;
+            orderEntity.ShippingCost = order.ShippingCost;
+            orderEntity.Status = order.Status;
+
+            _db.SaveChanges();
         }
 
         public IEnumerable<BookInOrderView> GetAllBooksForOrder(OrderView order)
