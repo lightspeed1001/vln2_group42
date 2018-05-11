@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
 using BookCave.Data;
 using BookCave.Data.EntityModels;
-using BookCave.Repositories;
+using BookCave.Services;
 using BookCave.Models.ViewModels;
 
 namespace BookCave.Controllers
@@ -25,8 +25,8 @@ namespace BookCave.Controllers
             var books2 = bookRepo.GetAllBooksShortView();
             
             return View(books2);*/
-            GenreRepository genreRepo = new GenreRepository();
-            ViewBag.Categories = genreRepo.GetAllGenres();
+            GenreService GenreSer = new GenreService();
+            ViewBag.Categories = GenreSer.GetAllGenres();
 
             //TestData();
             return View();
@@ -38,16 +38,18 @@ namespace BookCave.Controllers
 
         public IActionResult Details(int? id) 
         {
-            GenreRepository genreRepo = new GenreRepository();
-            ViewBag.Categories = genreRepo.GetAllGenres();
-            
+            GenreService GenreSer = new GenreService();
+            BookService bookSer = new BookService();
+            ViewBag.Categories = GenreSer.GetAllGenres();
+            var BookDetails = bookSer.GetAllBooksByID(id);
+            ViewBag.Books = BookDetails;
             return View();
         }
 
         public static void TestData()
         {
-            BookRepository bookRepo = new BookRepository();
-            var books = bookRepo.GetAllBooksShortView();
+            BookService bookSer = new BookService();
+            var books = bookSer.GetAllBooksShortView();
             foreach (var book in books)
             {
                 string bla = "Title: " + book.BookTitle + "\n";

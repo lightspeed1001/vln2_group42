@@ -27,6 +27,10 @@ namespace BookCave.Services
             return null;
         }
 
+        public IEnumerable<ShortBookView> GetAllBooksShortView()
+        {
+            return _bookRepo.GetAllBooksShortView();
+        }
         //Generic fetchers
         public IEnumerable<ShortBookView> GetAllBooksShort()
         {
@@ -37,10 +41,11 @@ namespace BookCave.Services
         {
             return _bookRepo.GetAllDetailedBookView();
         }
-        public List<BookView> GetAllBooksByID(int? id)
+        public IEnumerable<BookDetailsView> GetAllBooksByID(int? id)
         {
-            
-            return GetAllBooksByID(1);
+            var allBooks = _bookRepo.GetAllBookDetailsView();
+            var results = (from b in allBooks where b.ID == id select b);
+            return results;
         }
     }
 }

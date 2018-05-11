@@ -105,7 +105,12 @@ namespace BookCave.Repositories
 
             return books;
         }
-
+        public IEnumerable<BookDetailsView> GetAllBookDetailsView()
+        {
+            var books = (from b in _db.Books
+                        select GetBookDetailsView(b));
+            return books;
+        }
         public BookView GetBookViewForEntity(Book b)
         {
             if(b == null) return null;
@@ -203,6 +208,7 @@ namespace BookCave.Repositories
                                             }).DefaultIfEmpty(new GenreView{ Name = "Unknown Genre" });
             BookDetailsView book = new BookDetailsView
                 {
+                    ID = b.ID,
                     Title = b.Title,
                     Authors = authors,
                     BookPrice = b.Price,
