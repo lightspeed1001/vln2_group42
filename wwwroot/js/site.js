@@ -16,8 +16,8 @@ function showSlides(n) {
   var i;
   var slides = document.getElementsByClassName("mySlides");
   var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
+  if (n > slides.length) { slideIndex = 1;}
+  if (n < 1) { slideIndex = slides.length;}
   for (i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";
   }
@@ -64,4 +64,28 @@ function Lang2()
   document.getElementById("language").innerHTML = "Language";
   document.getElementById("username").innerHTML = "Username";
   document.getElementById("pass").innerHTML = "Password";
+}
+
+
+function login() {
+    var username = document.getElementById("#username").value;
+    var password = document.getElementById("#password").value;
+
+    $.ajax({
+        type: 'POST',
+        url: 'login',
+        data: {
+            email:    username,
+            password: password
+        },
+        success: function (user) {
+            if (user) {
+                $('#login-modal').modal('toggle');
+                $('#userName').text(user.Name);
+                $('#modalError').hide();
+            } else {
+                $('#modalError').show();
+            }
+        }
+    });
 }

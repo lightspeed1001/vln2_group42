@@ -5,25 +5,33 @@ using BookCave.Repositories;
 
 namespace BookCave.Services
 {
-    public class CustomerService
+    public class CustomerService : ICustomerServices
     {
-    
-        public static void CreateNewUser(NewUserView newUser)
+        private readonly ICustomerRepositorys _customerRepositorys;
+
+        public CustomerService(ICustomerRepositorys customerRepositorys)
         {
-            //CustomerRepository repo = new CustomerRepository();
-            //repo.AddUser(newUser);
+            _customerRepositorys = customerRepositorys;
         }
 
-        public static void EditUser(UserEditView user)
+        public void CreateNewUser(NewUserView newUser)
         {
-            CustomerRepository repo = new CustomerRepository();
-            repo.EditUser(user);
+
         }
 
-        public static bool CheckLogin(UserLoginView user)
+        public void EditUser(UserEditView user)
         {
-            
-            return false;
+
+        }
+
+        public bool CheckLogin(UserLoginView user)
+        {
+            return _customerRepositorys.isUser(user.Email, user.Password);
+        }
+
+        public UserView getUser(string username)
+        {
+            return _customerRepositorys.getUser(username);
         }
     }
 }

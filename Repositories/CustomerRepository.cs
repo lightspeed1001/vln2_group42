@@ -7,13 +7,37 @@ using BookCave.Models.ViewModels;
 
 namespace BookCave.Repositories
 {
-    public class CustomerRepository
+    public class CustomerRepository : ICustomerRepositorys
     {
         private DataContext _db;
 
         public CustomerRepository()
         {
             _db = new DataContext();
+        }
+
+        public bool isUser(string username, string password)
+        {
+            return (from c in _db.Customers where (c.Email == username && c.HashedPassword == password) select c).Any();
+        }
+
+        public UserView getUser(string username)
+        {
+            var users = (from c in _db.Customers
+                         where c.Email == username
+                         select
+                            new UserView
+                            {
+                                ID = c.ID,
+                                Name = c.Name,
+                                Email = c.Email,
+                                Address = c.Address,
+                                Country = c.Country,
+                                Postcode = c.Postcode,
+                                PhoneNumber = c.PhoneNumber
+                        });
+
+            return users.SingleOrDefault();
         }
 
         //Login will probably be email based?
