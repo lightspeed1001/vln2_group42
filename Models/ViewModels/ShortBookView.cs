@@ -11,7 +11,6 @@ namespace BookCave.Models.ViewModels
         public string BookTitle { get; set; }
         public IEnumerable<float> BookRating { get; set; }
         public float BookPrice { get; set; }
-        public float BookPriceModifier { get; set; }
         public string BookCoverPath { get; set; }
     }
 }
